@@ -1,10 +1,10 @@
-
+// SPDX-License-Identifier: MIT
 pragma solidity >=0.7.0 <0.9.0;
 
 contract App{
     address public owner;
     bool public paused;
-    address public treasuryWallet;
+    uint public treasuryWallet;
 
     address[] public stakers;
 
@@ -70,9 +70,18 @@ contract App{
         
     }
 
-    // function depositTax() public pure returns(uint){
-    //     uint tax = stakingBalance[msg.sender] * 0.05;
-    //     return treasuryWallet = stakingBalance[msg.sender] - tax;
-    // }
+    function depositTax() public{
+        uint tax = stakingBalance[msg.sender] * 5 / 100;
+        treasuryWallet = stakingBalance[msg.sender] + tax;
+    }
+
+    function withdrawTax() public{
+        uint tax = stakingBalance[msg.sender] * 5 / 100;
+        treasuryWallet = stakingBalance[msg.sender] - tax;
+    }
+
+    function treasuryWalletResult() public view returns(uint){
+        return treasuryWallet;
+    }
 
  }
