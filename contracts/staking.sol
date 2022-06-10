@@ -7,27 +7,32 @@ contract App{
     bool public blockUser;
     uint public treasuryWallet;
 
-    address[] public stakers;
+    struct Stakers{
+        uint amount;
+        uint since;
+    }
 
-    mapping(address => uint) public stakingBalance;
+   Stakers userFunds;
+
+    mapping(address => Stakers[]) public funds;
     mapping(address => bool) public hasStaked;
     mapping(address => bool) public isStaking;
 
     constructor() public{
         owner = msg.sender;
+
     }
 
-    // Deposit Tokens
-    function stakeToken(uint _amount) public {
-    
-        require(_amount > 0, "amount cannot be 0");
-        require(blockUser == false, "User Blocked!");
 
-        stakingBalance[msg.sender] += _amount;
-        
-        if(!hasStaked[msg.sender]){
-            stakers.push(msg.sender);
-        }
+    // Deposit Tokens
+    function stakeToken() payable public {
+    
+        require(msg.value > 0, "amount cannot be 0");
+        require(blockUser == false, "User Blocked!");
+        userFunds.amount = msg.value;
+        userFunds.since = block.timestamp;
+
+        funds[msg.sender].push(userFunds);
 
         isStaking[msg.sender] = true;
         hasStaked[msg.sender] = true;
@@ -36,34 +41,32 @@ contract App{
     // Withdraw Tokens
     function unstakeToken() public{
         
-        uint balance = stakingBalance[msg.sender];
-        require(balance > 0, "staking Balance cannot be less than 0");
-
-        stakingBalance[msg.sender] = 0;
+        require(userFunds.amount > 0, "funds cannot be less than 0");
+        userFunds.amount = 0;
         
-        if(!hasStaked[msg.sender]){
-            stakers.push(msg.sender);
-        }
-
         isStaking[msg.sender] = false;
 
     }
 
-    // Reward function
 
-    function issueRewards() public view returns(uint){
+    // Reward function
+    uint public reward;
+
+    function issueRewards() payable public{
         require(msg.sender == owner, "caller must be the owner");
         
-        for (uint i = 0; i < stakers.length; i++){
-            address recipient = stakers[i];
-            uint reward = stakingBalance[recipient]/100;
-            if(reward > 0){
-                return reward;
-            }
+        
+        for (uint i = 0; i < funds[msg.sender].length; i++){
+            // address recipient = st.stakers[i];
+            uint currentUserFund = funds[msg.sender][i].amount;
+            reward += (((block.timestamp - funds[msg.sender][i].since) / 86400) * currentUserFund/100);    
         }
+        payable(msg.sender).transfer(reward);
+
         
     }
 
+    
     // Pause function
     function setPaused(bool _paused) public {
         require(msg.sender == owner, "You are not the owner");
@@ -78,17 +81,13 @@ contract App{
 
     // Code for treasury wallet
     function depositTax() public{
-        uint tax = stakingBalance[msg.sender] * 5 / 100;
-        treasuryWallet = stakingBalance[msg.sender] + tax;
+        uint tax = userFunds.amount * 5 / 100;
+        treasuryWallet = userFunds.amount + tax;
     }
 
     function withdrawTax() public{
-        uint tax = stakingBalance[msg.sender] * 5 / 100;
-        treasuryWallet = stakingBalance[msg.sender] - tax;
-    }
-
-    function treasuryWalletResult() public view returns(uint){
-        return treasuryWallet;
+        uint tax = userFunds.amount * 5 / 100;
+        treasuryWallet = userFunds.amount - tax;
     }
 
     // Block / unblock user

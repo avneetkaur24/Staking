@@ -36,6 +36,35 @@
 						"internalType": "address",
 						"name": "",
 						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "funds",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "since",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
 					}
 				],
 				"name": "hasStaked",
@@ -71,14 +100,8 @@
 			{
 				"inputs": [],
 				"name": "issueRewards",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
+				"outputs": [],
+				"stateMutability": "payable",
 				"type": "function"
 			},
 			{
@@ -115,6 +138,19 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "reward",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "bool",
@@ -141,72 +177,15 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "_amount",
-						"type": "uint256"
-					}
-				],
+				"inputs": [],
 				"name": "stakeToken",
 				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "stakers",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"name": "stakingBalance",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
+				"stateMutability": "payable",
 				"type": "function"
 			},
 			{
 				"inputs": [],
 				"name": "treasuryWallet",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "treasuryWalletResult",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -260,11 +239,11 @@
 	},
 	"sources": {
 		"contracts/staking.sol": {
-			"keccak256": "0x2198f4585008f7fa76fc11f5a034ac1ef82f77c1e6b0ac1541b0f8e4a093df54",
+			"keccak256": "0x727e6030f40d6264709b3b23e355ff8b4b130d4b0c71c52b1d338fc7ea373fa0",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://ef04e73294d2061a283b68847711a9cbc82962ed9f8f0bda6e622b91293566f8",
-				"dweb:/ipfs/QmeUZVfxJHN6G7F4pR5C63tfUpTJe7dDG2scZrNwb6E54Y"
+				"bzz-raw://0d49bb70ab4451be6cedc96e37adffabcbf0a4b7f764f2ed221339071d73352d",
+				"dweb:/ipfs/QmThx4dPZDee5uwV3pGBq4G4MsKFPK3PVG9AWPRiEkmUnT"
 			]
 		}
 	},
