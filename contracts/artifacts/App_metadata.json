@@ -50,7 +50,7 @@
 			},
 			{
 				"inputs": [],
-				"name": "issueTokens",
+				"name": "issueRewards",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -72,6 +72,39 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "pauseContract",
+				"outputs": [],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "paused",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bool",
+						"name": "_paused",
+						"type": "bool"
+					}
+				],
+				"name": "setPaused",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -127,6 +160,19 @@
 			},
 			{
 				"inputs": [],
+				"name": "treasuryWallet",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "unstakeToken",
 				"outputs": [],
 				"stateMutability": "nonpayable",
@@ -161,10 +207,10 @@
 	},
 	"sources": {
 		"contracts/staking.sol": {
-			"keccak256": "0xeea22b185713e6145faa190351506e29989e7a120a33355681d38721583759bc",
+			"keccak256": "0x7f4d8f5e3851eea9c1b0795a839a498e96ed50db9c4bd88122672b1c4779602b",
 			"urls": [
-				"bzz-raw://4aba7fe6f9e16bf1b772464c5e58ed197fb33b021b1e5a2e568d10ffa326fcdd",
-				"dweb:/ipfs/QmQrqaFZ2SNPR7MAuQcnRXTrWWEgANMofdhyhvjptx9efb"
+				"bzz-raw://f008d99d6f5595f175628308d984c9b86238cfaebc2b35c1fa4dadd7cc359440",
+				"dweb:/ipfs/QmNX9D2wQESZAzktZPLmUPP9SMzpUgadJR2WfMx9RjrSdz"
 			]
 		}
 	},
