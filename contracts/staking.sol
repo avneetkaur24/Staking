@@ -39,11 +39,13 @@ contract App{
     }
 
     // Withdraw Tokens
-    function unstakeToken() public{
+    function unstakeToken() payable public{
         
         require(userFunds.amount > 0, "funds cannot be less than 0");
+        payable(msg.sender).transfer(address(this).balance);
+        //userFunds.amount = msg.value;
         userFunds.amount = 0;
-        
+
         isStaking[msg.sender] = false;
 
     }
@@ -54,12 +56,10 @@ contract App{
 
     function issueRewards() payable public{
         require(msg.sender == owner, "caller must be the owner");
-        
-        
+         
         for (uint i = 0; i < funds[msg.sender].length; i++){
-            // address recipient = st.stakers[i];
             uint currentUserFund = funds[msg.sender][i].amount;
-            reward += (((block.timestamp - funds[msg.sender][i].since) / 86400) * currentUserFund/100);    
+            reward += (((block.timestamp - funds[msg.sender][i].since) / 10) * currentUserFund/100);    
         }
         payable(msg.sender).transfer(reward);
 

@@ -200,7 +200,7 @@
 				"inputs": [],
 				"name": "unstakeToken",
 				"outputs": [],
-				"stateMutability": "nonpayable",
+				"stateMutability": "payable",
 				"type": "function"
 			},
 			{
@@ -239,11 +239,11 @@
 	},
 	"sources": {
 		"contracts/staking.sol": {
-			"keccak256": "0x727e6030f40d6264709b3b23e355ff8b4b130d4b0c71c52b1d338fc7ea373fa0",
+			"keccak256": "0xcfd7c044870c4ca0fe5e4dfed9bfb7060e5137e65ccd371d29ccfaf9a97e15be",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://0d49bb70ab4451be6cedc96e37adffabcbf0a4b7f764f2ed221339071d73352d",
-				"dweb:/ipfs/QmThx4dPZDee5uwV3pGBq4G4MsKFPK3PVG9AWPRiEkmUnT"
+				"bzz-raw://db362f43e7c7d8739f6f0786c86f9922df778206124596490e36dc0ccb859fb5",
+				"dweb:/ipfs/QmVfpTpymrypnmJHhQwTWAyJuV4vtFgztb5hmXFPfGkG7w"
 			]
 		}
 	},
