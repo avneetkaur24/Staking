@@ -24,13 +24,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "depositTax",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -53,6 +46,11 @@
 					{
 						"internalType": "uint256",
 						"name": "since",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "lastWithdraw",
 						"type": "uint256"
 					}
 				],
@@ -185,6 +183,19 @@
 			},
 			{
 				"inputs": [],
+				"name": "totalAmount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "treasuryWallet",
 				"outputs": [
 					{
@@ -239,11 +250,11 @@
 	},
 	"sources": {
 		"contracts/staking.sol": {
-			"keccak256": "0xcfd7c044870c4ca0fe5e4dfed9bfb7060e5137e65ccd371d29ccfaf9a97e15be",
+			"keccak256": "0x6b6d92ec3e5177d5ed33442d17e534cd20883a0430848b0ff60685d2e2d005ae",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://db362f43e7c7d8739f6f0786c86f9922df778206124596490e36dc0ccb859fb5",
-				"dweb:/ipfs/QmVfpTpymrypnmJHhQwTWAyJuV4vtFgztb5hmXFPfGkG7w"
+				"bzz-raw://1758608e3eea7c9d6abad58ed414d6f6a96782d9a14fa046bf481594ad2a345c",
+				"dweb:/ipfs/QmV8tTCmpyJSUARPFVvrAjhcBEc9uT51dK78efXQmEqh85"
 			]
 		}
 	},

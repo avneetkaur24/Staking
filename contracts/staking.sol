@@ -10,6 +10,7 @@ contract App{
     struct Stakers{
         uint amount;
         uint since;
+        uint lastWithdraw;
     }
 
    Stakers userFunds;
@@ -34,36 +35,42 @@ contract App{
 
         funds[msg.sender].push(userFunds);
 
+        //deposit tax
+        uint tax = userFunds.amount * 5 / 100;
+        treasuryWallet = userFunds.amount + tax;
+
         isStaking[msg.sender] = true;
         hasStaked[msg.sender] = true;
     }
 
     // Withdraw Tokens
     function unstakeToken() payable public{
-        
         require(userFunds.amount > 0, "funds cannot be less than 0");
-        payable(msg.sender).transfer(address(this).balance);
-        //userFunds.amount = msg.value;
-        userFunds.amount = 0;
-
+        for (uint i = 0; i < funds[msg.sender].length; i++){
+                funds[msg.sender][0].amount = 0;   
+        }
+        payable(msg.sender).transfer(totalAmount);
         isStaking[msg.sender] = false;
-
     }
 
 
     // Reward function
     uint public reward;
+    uint public totalAmount;
 
     function issueRewards() payable public{
         require(msg.sender == owner, "caller must be the owner");
          
         for (uint i = 0; i < funds[msg.sender].length; i++){
             uint currentUserFund = funds[msg.sender][i].amount;
-            reward += (((block.timestamp - funds[msg.sender][i].since) / 10) * currentUserFund/100);    
+            if(block.timestamp - funds[msg.sender][i].since < 8640000){
+                reward += (((block.timestamp - funds[msg.sender][i].since) / 10) * currentUserFund/100);    
+                totalAmount = funds[msg.sender][i].amount + reward;
+            }
+            funds[msg.sender][i].lastWithdraw = block.timestamp;    
         }
-        payable(msg.sender).transfer(reward);
-
         
+        payable(msg.sender).transfer(reward);   
     }
 
     
@@ -79,13 +86,8 @@ contract App{
         
     }
 
-    // Code for treasury wallet
-    function depositTax() public{
-        uint tax = userFunds.amount * 5 / 100;
-        treasuryWallet = userFunds.amount + tax;
-    }
-
     function withdrawTax() public{
+        require(msg.sender == owner, "Only owner can withdraw the tax");
         uint tax = userFunds.amount * 5 / 100;
         treasuryWallet = userFunds.amount - tax;
     }
